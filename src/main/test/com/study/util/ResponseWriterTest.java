@@ -26,7 +26,7 @@ public class ResponseWriterTest {
 
     }
 
-    /*@StartServer (expected = IOException.class)
+    /*@Test (expected = IOException.class)
     public void writeResponseTestException() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("resources/com/study/testData/fileToWrite");
         BufferedOutputStream writer = new BufferedOutputStream(fileOutputStream);
