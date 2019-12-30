@@ -30,8 +30,34 @@ public abstract class RequestParser {
     }
 
     static void injectUriAndMethod(Request request, String requestLine) {
+        String[] strings = requestLine.split(" ");
+        try {
+            request.setHttpMethod(HttpMethod.valueOf(strings[0]));
+            request.setUri(strings[1]);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("injectUriAndMethod: " + ex.getMessage());
+            ex.printStackTrace();
+            throw new IllegalArgumentException();
+        }
     }
 
-    static void injectHeaders(Request request, BufferedReader reader) throws IOException {
+    static void injectHeaders(Request request, BufferedReader reader) throws IOException { // почему я должна тут
+        // указывать throws IOException, хотя я делаю catch для неё?
+        try {
+            Map <String, String> headersMap = new HashMap<>();
+            while (true) {
+                String line = reader.readLine();
+                if (line.isEmpty()) {
+                    break;
+                }
+                String[] strings = line.split(": ");
+                headersMap.put(strings[0], strings[1]);
+            }
+            request.setHeaders(headersMap);
+        } catch (IOException ex) {
+            System.out.println("injectHeaders: " + ex.getMessage());
+            ex.printStackTrace();
+            throw new IOException();
+        }
     }
 }

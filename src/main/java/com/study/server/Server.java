@@ -10,11 +10,11 @@ public class Server {
     private int port;
     private String webAppPAth;
 
-    public Server() {
+    Server() {
         this(DEFAULT_PORT);
     }
 
-    public Server(int port) {
+    Server(int port) {
         this.port = port;
     }
 
@@ -26,7 +26,6 @@ public class Server {
                 try (Socket socket = serverSocket.accept();
                      BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                      BufferedOutputStream writer = new BufferedOutputStream(socket.getOutputStream())) {
-
                     RequestHandler requestHandler = new RequestHandler(reader, writer, webAppPAth);
                     requestHandler.handle();
 

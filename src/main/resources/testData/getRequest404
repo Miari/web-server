@@ -1,0 +1,4 @@
+GET /index1.html HTTP/1.1
+Host: www.w3.org
+Accept: text/html
+
