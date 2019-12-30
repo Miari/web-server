@@ -12,8 +12,8 @@ public class ResponseWriterTest {
     public void writeResponseTest() throws IOException {
         byte[] b = new byte[61];
         try (
-                BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream("resources/testData/fileToWrite"));
-                FileInputStream inputStream = new FileInputStream("resources/testData/fileToWrite")) {
+                BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream("resources/com/study/testData/fileToWrite"));
+                FileInputStream inputStream = new FileInputStream("resources/com/study/testData/fileToWrite")) {
             ResponseWriter responseWriter = new ResponseWriter(writer);
             byte[] arrayToWrite = {60, 33, 100, 111, 99, 116, 121, 112, 101, 32, 104, 116, 109, 108, 62, 13, 10, 60,
                     104, 116, 109, 108, 32, 108, 97, 110, 103, 61, 34, 101, 110, 34, 62, 13, 10, 60, 47, 104, 116, 109,
@@ -28,7 +28,7 @@ public class ResponseWriterTest {
 
     /*@StartServer (expected = IOException.class)
     public void writeResponseTestException() throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("resources/testData/fileToWrite");
+        FileOutputStream fileOutputStream = new FileOutputStream("resources/com/study/testData/fileToWrite");
         BufferedOutputStream writer = new BufferedOutputStream(fileOutputStream);
         fileOutputStream.close();
         ResponseWriter responseWriter = new ResponseWriter(writer); // почему responseWriter создается (и в дальнейшем в

@@ -9,19 +9,19 @@ public class ResourceReaderTest {
 
     /*@StartServer
     public void injectUriAndMethodTest() {
-        String content = ResourceReader.readContent("resources/testData", "/index.html");
+        String content = ResourceReader.readContent("resources/com/study/testData", "/index.html");
         assertEquals("<!doctype html>\r\n<html lang=\"en\">\r\n</html>", content);
     }
 
     @StartServer
     public void injectUriAndMethodTestException() {
-        String content = ResourceReader.readContent("resources/testData", "/index1.html");
+        String content = ResourceReader.readContent("resources/com/study/testData", "/index1.html");
         assertEquals("", content);
     }*/
 
     @Test
     public void injectUriAndMethodTest() {
-        byte[] byteArray = ResourceReader.readContent("resources/testData", "/index.html");
+        byte[] byteArray = ResourceReader.readContent("resources/com/study/testData", "/index.html");
         byte[] arrayToCompare = {60, 33, 100, 111, 99, 116, 121, 112, 101, 32, 104, 116, 109, 108, 62, 13, 10, 60, 104, 116, 109, 108, 32, 108, 97, 110, 103, 61, 34, 101, 110, 34, 62, 13, 10, 60, 47, 104, 116, 109, 108, 62};
         for (int i = 0; i < byteArray.length; i++) {
             assertEquals(byteArray[i], arrayToCompare[i]);
@@ -30,6 +30,6 @@ public class ResourceReaderTest {
 
     @Test(expected = ServerException.class)
     public void injectUriAndMethodExceptionTest() {
-        ResourceReader.readContent("resources/testData", "/index1.html");
+        ResourceReader.readContent("resources/com/study/testData", "/index1.html");
     }
 }

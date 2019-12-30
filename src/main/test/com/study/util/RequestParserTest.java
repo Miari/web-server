@@ -29,7 +29,7 @@ public class RequestParserTest {
     @Test
     public void injectHeadersTest() throws IOException {
         Request request = new Request();
-        try (BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/testData/getRequest")));) {
+        try (BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/com/study/testData/getRequest")))) {
             bufferedReaderFromFile.readLine();
             RequestParser.injectHeaders(request, bufferedReaderFromFile);
             Map map = request.getHeaders();
@@ -41,14 +41,14 @@ public class RequestParserTest {
     @Test(expected = IOException.class)
     public void injectHeadersTestException() throws IOException {
         Request request = new Request();
-        BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/testData/getRequest")));
+        BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/com/study/testData/getRequest")));
         bufferedReaderFromFile.close();
         RequestParser.injectHeaders(request, bufferedReaderFromFile);
     }
 
     @Test
     public void parseRequestTest() throws IOException {
-        try (BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/testData/getRequest")));) {
+        try (BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/com/study/testData/getRequest")))) {
             Request request = RequestParser.parseRequest(bufferedReaderFromFile);
             assertEquals("/index.html", request.getUri());
             assertEquals(HttpMethod.GET, request.getHttpMethod());
@@ -60,13 +60,13 @@ public class RequestParserTest {
 
     @Test(expected = ServerException.class)
     public void parseRequestTestMethodNotAllowed() throws FileNotFoundException {
-        BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/testData/getRequestWithIncorrectMethod")));
+        BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/com/study/testData/getRequestWithIncorrectMethod")));
         RequestParser.parseRequest(bufferedReaderFromFile);
     }
 
     @Test(expected = ServerException.class)
     public void parseRequestTestBadRequest() throws IOException {
-        BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/testData/getRequest")));
+        BufferedReader bufferedReaderFromFile = new BufferedReader(new InputStreamReader(new FileInputStream("resources/com/study/testData/getRequest")));
         bufferedReaderFromFile.close();
         RequestParser.parseRequest(bufferedReaderFromFile);
     }
